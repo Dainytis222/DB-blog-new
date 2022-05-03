@@ -1,0 +1,5 @@
+--INSERT INTO user (name) VALUES ("Jonas");
+--INSERT INTO post (header, text, date_time, user_id) VALUES ("Joninės", "Jõninės, Kùpolės, Rãsos, vasaros saulėgrįžos šventė. Švenčiama birželio 24 dieną, krikščionių šalyse sutampa su Šv. Jono Krikštytojo diena. Baltų kraštuose ši šventė (Latvijoje vadinama Lyguo) žinoma nuo 14 amžiaus (1372 minima Varmės vyskupo Henriko II rašte, 1573 – Wolfenbüttelio postilėje, 1595 – C. Hennenbergerio, 1690 – M. Pretorijaus, 1702 – J. A. von Brando veikaluose), iki krikščionybės įvedimo buvo vadinamos Kupolėmis, arba Rasomis, ir buvo švenčiamos visą trečiąją birželio dekadą. Po krikščionybės įvedimo Kupolės buvo sutapatintos su Jono Krikštytojo diena, o šventines apeigas imta atlikinėti jos išvakarėse (birželio 23 dieną); K. G. Milkaus (1800) ir F. Kuršaičio (1883) žodynuose šventė vadinama Joninėmis, o kupolės tapatinamos su jonažolėmis (Hypericum perforatum).", CURRENT_TIMESTAMP, 1);
+--INSERT INTO comment (text, date_time, post_id, user_id) VALUES ("Gera šventė", CURRENT_TIMESTAMP, 1, 1);
+--INSERT INTO comment (text, date_time, post_id, user_id) VALUES ("Ir vardas geras", CURRENT_TIMESTAMP, 1, 1);
+SELECT * FROM comment;
