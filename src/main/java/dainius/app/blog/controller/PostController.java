@@ -1,8 +1,10 @@
 package dainius.app.blog.controller;
 
+import dainius.app.blog.exeption.PostNotFoundException;
 import dainius.app.blog.repository.PostRepository;
 import dainius.app.blog.repository.entity.Post;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,16 +38,21 @@ public class PostController {
       Model model
   ) {
 
-    Post foundPost = postRepository.findById(id);
+    Optional<Post> foundPost = postRepository.findById(id);
+
+    if (foundPost.isEmpty()) {
+      throw new PostNotFoundException();
+    }
+
+    Post post = foundPost.get();
 
     model.addAttribute("showComment", showComment);
 
-    model.addAttribute("postId", foundPost.getId());
-    model.addAttribute("postHeader", foundPost.getHeader());
-    model.addAttribute("postText", foundPost.getText());
-    model.addAttribute("postDateAndTime", foundPost.getDateAndTime());
-    model.addAttribute("postUserId", foundPost.getUserId());
-
+    model.addAttribute("postId", post.getId());
+    model.addAttribute("postHeader", post.getHeader());
+    model.addAttribute("postText", post.getText());
+    model.addAttribute("postDateAndTime", post.getDateAndTime());
+    model.addAttribute("postUserId", post.getUserId());
 
     return "postPage";
   }
