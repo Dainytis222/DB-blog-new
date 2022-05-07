@@ -1,0 +1,15 @@
+<html xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <title>dbblog | Create posts</title>
+  </head>
+  <body>
+  <h3>Create post</h3>
+    <form th:action="@{/posts/create}" th:object="${post}" method="post">
+      <div>User ID: <input type="text" th:field="*{userId}"></div>
+      <div>Header: <input type="text" th:field="*{header}"></div>
+      <div>Text: <input type="text" th:field="*{text}"></div>
+      <div><input type="submit" title="Create"></div>
+    </form>
+
+  </body>
+</html>
