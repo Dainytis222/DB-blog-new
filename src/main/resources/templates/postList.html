@@ -8,5 +8,13 @@
         <a  th:text="${post.getHeader()}" th:href="@{/posts/{id}(id=${post.getId()})}"></a>
       </li>
     </ul>
+    <div>
+      <a th:href="@{/posts(page=${currentPage -1})}"> < </a>
+      <span th:each="page: ${#numbers.sequence(0, totalPages -1)}">
+        <a th:href="@{/posts(page=${page})}" th:text="${page + 1}"></a>
+      </span>
+      <a th:href="@{/posts(page=${currentPage +1})}"> > </a>
+    </div>
+
   </body>
 </html>
