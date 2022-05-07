@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -63,15 +64,22 @@ public class PostController {
     Post post = foundPost.get();
 
     model.addAttribute("showComment", showComment);
-
-    model.addAttribute("postId", post.getId());
-    model.addAttribute("postHeader", post.getHeader());
-    model.addAttribute("postText", post.getText());
-    model.addAttribute("postDateAndTime", post.getDateAndTime());
-    model.addAttribute("postUserId", post.getUserId());
+    model.addAttribute("post", post);
 
     return "postPage";
   }
 
+  @GetMapping("/post")
+  public  String getPostForm(Model model){
+    model.addAttribute("post", new Post());
+    return "postForm";
+  }
+
+  @PostMapping("/create")
+  public String createPost(Post post, Model model){
+    Post createdPost = postRepository.save(post);
+    model.addAttribute("post", createdPost);
+    return "postPage";
+  }
 }
 
