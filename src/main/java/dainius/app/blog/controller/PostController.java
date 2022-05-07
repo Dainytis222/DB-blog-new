@@ -5,6 +5,9 @@ import dainius.app.blog.repository.PostRepository;
 import dainius.app.blog.repository.entity.Post;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,10 +26,23 @@ public class PostController {
   }
 
   @GetMapping
-  public String getPostList(Model model) {
-    List<Post> posts = postRepository.findAll();
+  public String getPostList(
+      @RequestParam(name = "page", defaultValue = "0") int pageNumber,
+      Model model) {
+    Pageable pageable = Pageable
+        .ofSize(5)
+        .withPage(pageNumber);
+
+    Page<Post> postsPage = postRepository.findAll(pageable);
+    List<Post> posts = postsPage.getContent();
+
+//    List<Post> posts = postRepository.findAll();
+//    List<Post> userPosts = postRepository.findPostsByUserId(4);
 
     model.addAttribute("posts", posts);
+    model.addAttribute("currentPage", pageNumber);
+    model.addAttribute("totalPages", postsPage.getTotalPages());
+//    model.addAttribute("posts", userPosts);
 
     return "postList";
   }
