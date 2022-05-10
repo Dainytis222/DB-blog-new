@@ -1,7 +1,7 @@
 <html xmlns:th="https://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8">
-    <title>dbblog | Create posts</title>
+    <title>dbblog | Create comment</title>
     <link rel="stylesheet" th:href="@{/styles.css}">
   </head>
   <body class="background">
@@ -9,19 +9,15 @@
       <a th:href="@{?lang=lt}">LT</a>
       <a th:href="@{?lang=en}">EN</a>
     </div>
-    <h3 th:text="#{createPostKey}"></h3>
-    <form th:action="@{/posts/create}" th:object="${post}" method="post">
+    <h3 th:text="#{createCommentKey}"></h3>
+    <form th:action="@{/posts/{id}(id=${post.getId()})/comments/create}" th:object="${comment}" method="comment">
       <div>
         <span th:text="#{userIdKey}"></span>
         <input type="text" th:field="*{userId}">
       </div>
       <div>
-        <span th:text="#{headerKey}"></span>
-        <input type="text" th:field="*{header}">
-      </div>
-      <div>
         <span th:text="#{textKey}"></span>
-        <textarea type="text" rows="20" cols="50" th:field="*{text}"></textarea>
+        <textarea type="text" rows="20" cols="20" th:field="*{text}"></textarea>
       </div>
       <div>
         <input type="Submit" th:value="#{submitKey}">

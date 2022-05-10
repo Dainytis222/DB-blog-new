@@ -1,0 +1,34 @@
+<html xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <title>dbblog | Comments</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+  </head>
+  <body class="background">
+    <div>
+      <a th:href="@{?lang=lt}">LT</a>
+      <a th:href="@{?lang=en}">EN</a>
+    </div>
+    <ul th:each="comment: ${comments}">
+<!--      <li>-->
+<!--        <a  th:text="${post.getHeader()}" th:href="@{/posts/{id}(id=${post.getId()})}"></a>-->
+<!--      </li>-->
+      <li th:object="${comment}">
+          <h4 th:text="*{userId}"></h4>
+          <p th:text="*{dateAndTime}"></p>
+          <p th:text="*{text}"></p>
+      </li>
+    </ul>
+
+    <div>
+      <a th:href="@{/comments(page=${currentPage -1})}"> < </a>
+      <span th:each="page: ${#numbers.sequence(0, totalPages -1)}">
+              <a th:href="@{/posts/{id}(id=${post.getId()})/comments(page=${page})}" th:text="${page + 1}"></a>
+            </span>
+      <a th:href="@{/posts/{id}(id=${post.getId()})/comments(page=${currentPage +1})}"> > </a>
+    </div>
+    <div>
+      <a th:text="#{createCommentKey}" th:href="@{/posts/{id}(id=${post.getId()})/comments/comment}"></a>
+    </div>
+  </body>
+</html>

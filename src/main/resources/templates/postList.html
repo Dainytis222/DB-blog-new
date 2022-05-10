@@ -1,20 +1,28 @@
 <html xmlns:th="https://www.thymeleaf.org">
   <head>
+    <meta charset="UTF-8">
     <title>dbblog | Posts</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
   </head>
-  <body>
-    <ul th:each="post: ${posts}">
-      <li>
-        <a  th:text="${post.getHeader()}" th:href="@{/posts/{id}(id=${post.getId()})}"></a>
-      </li>
-    </ul>
-    <div>
-      <a th:href="@{/posts(page=${currentPage -1})}"> < </a>
-      <span th:each="page: ${#numbers.sequence(0, totalPages -1)}">
-        <a th:href="@{/posts(page=${page})}" th:text="${page + 1}"></a>
-      </span>
-      <a th:href="@{/posts(page=${currentPage +1})}"> > </a>
-    </div>
-
-  </body>
+    <body class="background">
+      <div>
+        <a th:href="@{?lang=lt}">LT</a>
+        <a th:href="@{?lang=en}">EN</a>
+      </div>
+      <ul th:each="post: ${posts}">
+        <li>
+          <a  th:text="${post.getHeader()}" th:href="@{/posts/{id}(id=${post.getId()})}"></a>
+        </li>
+      </ul>
+      <div>
+        <a th:href="@{/posts(page=${currentPage -1})}"> < </a>
+        <span th:each="page: ${#numbers.sequence(0, totalPages -1)}">
+          <a th:href="@{/posts(page=${page})}" th:text="${page + 1}"></a>
+        </span>
+        <a th:href="@{/posts(page=${currentPage +1})}"> > </a>
+      </div>
+      <div>
+        <a th:text="#{createPostKey}" th:href="@{/posts/post}"></a>
+      </div>
+    </body>
 </html>

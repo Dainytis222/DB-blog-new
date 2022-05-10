@@ -1,18 +1,25 @@
 <html xmlns:th="https://www.thymeleaf.org">
   <head>
+    <meta charset="UTF-8">
     <title>dbblog | Posts</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
   </head>
-  <body>
+  <body class="background">
+    <div>
+      <a th:href="@{?lang=lt}">LT</a>
+      <a th:href="@{?lang=en}">EN</a>
+    </div>
     <div th:object="${post}">
       <h4 th:text="*{userId}"></h4>
       <p th:text="*{dateAndTime}"></p>
       <h3 th:text="*{header}"></h3>
       <p th:text="*{text}"></p>
-<!--      <div>-->
-<!--        <h5>user</h5>-->
-<!--        <p>Date and time</p>-->
-<!--        <p th:text="${showComment}"></p>-->
-<!--      </div>-->
+    </div>
+    <div>
+      <a  th:text="#{homeKey}" th:href="@{/posts}"></a>
+<!--      <a th:text="#{editPostKey}" th:href="@{|/posts/${post.getId()}/edit|}"></a>-->
+      <a th:text="#{editPostKey}" th:href="@{/posts/{id}/edit(id=${post.getId()})}"></a>
+      <a th:text="#{createCommentKey}" th:href="@{/posts/{id}/comments/comment(id=${post.getId()})}">Create comment</a>
     </div>
   </body>
 </html>

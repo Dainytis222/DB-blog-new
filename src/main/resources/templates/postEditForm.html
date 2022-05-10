@@ -1,7 +1,7 @@
 <html xmlns:th="https://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8">
-    <title>dbblog | Create posts</title>
+    <title>dbblog | Edit posts</title>
     <link rel="stylesheet" th:href="@{/styles.css}">
   </head>
   <body class="background">
@@ -9,8 +9,8 @@
       <a th:href="@{?lang=lt}">LT</a>
       <a th:href="@{?lang=en}">EN</a>
     </div>
-    <h3 th:text="#{createPostKey}"></h3>
-    <form th:action="@{/posts/create}" th:object="${post}" method="post">
+    <h3 th:text="#{editPostKey}"></h3>
+    <form th:action="@{/posts/edit}" th:object="${post}" method="post">
       <div>
         <span th:text="#{userIdKey}"></span>
         <input type="text" th:field="*{userId}">
