@@ -6,9 +6,11 @@ import dainius.app.blog.service.CommentService;
 import dainius.app.blog.service.PostService;
 import java.time.LocalDateTime;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,7 +65,10 @@ public class CommentController {
   }
 
   @PostMapping("/create")
-  public String createComment(Comment comment, Model model){
+  public String createComment(@Valid Comment comment, BindingResult errors, Model model){
+    if(errors.hasErrors()){
+      return "commentForm";
+    }
     comment.setDateAndTime(LocalDateTime.now());
     Comment createdComment = commentService.create(comment);
 
