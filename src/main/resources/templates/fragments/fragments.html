@@ -1,0 +1,26 @@
+<html xmlns:th="https://www.thymeleaf.org">
+  <head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <title th:text="*{title}">dbblog | Posts</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+  </head>
+  <style th:fragment="font">
+    body {font-family: 'Trebuchet MS', sans-serif;}
+  </style>
+  <body class="background">
+    <div class="topnav" th:fragment="menu">
+      <a th:href="@{/posts}">
+        <img class="logo" th:src="@{/images/DB-blog-logo.png}">
+      </a>
+<!--      <a class="active" th:href="@{/posts}" th:text="#{menuAllPostsKey}">All</a>-->
+      <a th:href="@{/posts}" th:text="#{menuAllPostsKey}"></a> 
+      <a th:href="@{/posts/post}" th:text="#{menuCreatePostKey}"></a>
+      <a th:href="@{?lang=lt}">
+        <img class="flag" th:src="@{/images/LT-flag.png}">
+      </a>
+      <a th:href="@{?lang=en}">
+        <img class="flag" th:src="@{/images/UK-flag.png}">
+      </a>
+    </div>
+  </body>
+</html>
