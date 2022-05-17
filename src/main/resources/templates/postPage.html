@@ -1,25 +1,19 @@
 <html xmlns:th="https://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8">
-    <title>dbblog | Posts</title>
-    <link rel="stylesheet" th:href="@{/styles.css}">
-  </head>
+  <head th:replace="fragments/fragments :: head('DBblog | ' + ${post.getHeader()})"></head>
+  <style th:replace="fragments/fragments :: font"></style>
   <body class="background">
-    <div>
-      <a th:href="@{?lang=lt}">LT</a>
-      <a th:href="@{?lang=en}">EN</a>
-    </div>
-    <div th:object="${post}">
-      <h4 th:text="*{userId}"></h4>
-      <p th:text="*{dateAndTime}"></p>
-      <h3 th:text="*{header}"></h3>
+    <div th:replace="fragments/fragments :: menu"></div>
+    <div class="postBlock" th:object="${post}">
+      <h4 class="right" th:text="*{userId}"></h4>
+      <p class="right" th:text="*{dateAndTime}"></p>
+      <h2 th:text="*{header}"></h2>
+      <div><img src="https://picsum.photos/150"></div>
       <p th:text="*{text}"></p>
     </div>
-    <div>
-      <a  th:text="#{homeKey}" th:href="@{/posts}"></a>
-<!--      <a th:text="#{editPostKey}" th:href="@{|/posts/${post.getId()}/edit|}"></a>-->
+    <div class="pages">
       <a th:text="#{editPostKey}" th:href="@{/posts/{id}/edit(id=${post.getId()})}"></a>
       <a th:text="#{createCommentKey}" th:href="@{/posts/{id}/comments/comment(id=${post.getId()})}">Create comment</a>
     </div>
   </body>
 </html>
+

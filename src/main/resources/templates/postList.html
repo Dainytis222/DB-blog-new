@@ -1,29 +1,25 @@
 <html xmlns:th="https://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8">
-    <title>dbblog | Posts</title>
-    <link rel="stylesheet" th:href="@{/styles.css}">
-  </head>
-    <body class="background">
-
-      <div>
-        <a th:href="@{?lang=lt}">LT</a>
-        <a th:href="@{?lang=en}">EN</a>
-      </div>
-      <ul th:each="post: ${posts}">
-        <li>
-          <a  th:text="${post.getHeader()}" th:href="@{/posts/{id}(id=${post.getId()})}"></a>
-        </li>
-      </ul>
-      <div>
-        <a th:href="@{/posts(page=${currentPage -1})}"> < </a>
-        <span th:each="page: ${#numbers.sequence(0, totalPages -1)}">
-          <a th:href="@{/posts(page=${page})}" th:text="${page + 1}"></a>
-        </span>
-        <a th:href="@{/posts(page=${currentPage +1})}"> > </a>
-      </div>
-      <div>
-        <a th:text="#{createPostKey}" th:href="@{/posts/post}"></a>
-      </div>
-    </body>
+  <head th:replace="fragments/fragments :: head('DBblog | All posts')"></head>
+  <style th:replace="fragments/fragments :: font"></style>
+  <body class="background">
+    <div th:replace="fragments/fragments :: menu"></div>
+    <div class="postBlock" th:each="post: ${posts}">
+      <h4 class="right" th:text="${post.getUserId()}"></h4>
+      <p  class="right" th:text="${post.getDateAndTime()}"></p>
+      <h2><a th:text="${post.getHeader()}" th:href="@{/posts/{id}(id=${post.getId()})}"></a></h2>
+      <div><img src="https://picsum.photos/150"></div>
+      <p class="short-text" th:text="${post.getText()}"></p>
+<!--      <div>-->
+<!--        <a th:text="#{editPostKey}" th:href="@{/posts/{id}/edit(id=${post.getId()})}"></a>-->
+<!--        <a th:text="#{createCommentKey}" th:href="@{/posts/{id}/comments/comment(id=${post.getId()})}">Create comment</a>-->
+<!--      </div>-->
+    </div>
+    <div class="pages">
+      <a th:href="@{/posts(page=${currentPage -1})}"> < </a>
+      <span th:each="page: ${#numbers.sequence(0, totalPages -1)}">
+        <a th:href="@{/posts(page=${page})}" th:text="${page + 1}"></a>
+      </span>
+      <a th:href="@{/posts(page=${currentPage +1})}"> > </a>
+    </div>
+  </body>
 </html>

@@ -1,34 +1,26 @@
 <html xmlns:th="https://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8">
-    <title>dbblog | Create posts</title>
-    <link rel="stylesheet" th:href="@{/styles.css}">
-  </head>
+  <head th:replace="fragments/fragments :: head('DBblog | Create post')"></head>
   <body class="background">
+    <div th:replace="fragments/fragments :: menu"></div>
     <div>
-      <a th:href="@{?lang=lt}">LT</a>
-      <a th:href="@{?lang=en}">EN</a>
-    </div>
-    <h3 th:text="#{createPostKey}"></h3>
-    <form th:action="@{/posts/create}" th:object="${post}" method="post">
-      <div>
-        <span th:text="#{userIdKey}"></span>
-        <input type="text" th:field="*{userId}">
-      </div>
-      <div>
-        <span th:text="#{headerKey}"></span>
-        <input type="text" th:field="*{header}">
-      </div>
-      <div>
-        <span th:text="#{textKey}"></span>
-        <textarea type="text" rows="20" cols="50" th:field="*{text}"></textarea>
-      </div>
-      <div>
-        <input type="Submit" th:value="#{submitKey}">
-      </div>
-    </form>
-    <div>
-      <a th:text="#{homeKey}" th:href="@{/posts}">Home</a>
+      <h3 th:text="#{createPostKey}"></h3>
+      <form th:action="@{/posts/create}" th:object="${post}" method="post">
+        <div>
+          <div th:text="#{userIdKey}"></div>
+          <input type="text" th:field="*{userId}">
+        </div>
+        <div>
+          <div th:text="#{headerKey}"></div>
+          <input type="text" th:field="*{header}">
+        </div>
+        <div>
+          <div th:text="#{textKey}"></div>
+          <textarea type="text" rows="20" cols="50" th:field="*{text}"></textarea>
+        </div>
+        <div>
+          <input type="Submit" th:value="#{submitKey}">
+        </div>
+      </form>
     </div>
   </body>
 </html>

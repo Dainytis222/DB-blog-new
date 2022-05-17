@@ -21,6 +21,10 @@ public class PostService {
     return postRepository.save(post);
   }
 
+  public Post edit(Post post) {
+    return postRepository.save(post);
+  }
+
   public Post findById(int id) {
     return postRepository
         .findById(id)

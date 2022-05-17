@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -66,6 +67,18 @@ public class PostController {
     Post post = postService.findById(id);
     model.addAttribute("post", post);
     return "postEditForm";
+  }
+
+  @PostMapping("/edit")
+  public String editPost(@Valid Post post, BindingResult errors, Model model){
+    if (errors.hasErrors()) {
+      return "postEditForm";
+    }
+    post.setDateAndTime(LocalDateTime.now());
+    Post editedPost = postService.edit(post);
+
+    model.addAttribute("edit", editedPost);
+    return "redirect:/posts/" + editedPost.getId();
   }
 
   @GetMapping("/post")
