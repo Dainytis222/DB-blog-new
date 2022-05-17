@@ -69,8 +69,8 @@ public class PostController {
     return "postEditForm";
   }
 
-  @PostMapping("/edit")
-  public String editPost(@Valid Post post, BindingResult errors, Model model){
+  @PostMapping("/edit/{id}")
+  public String editPost(@PathVariable(name = "id") int id, @Valid Post post, BindingResult errors, Model model){
     if (errors.hasErrors()) {
       return "postEditForm";
     }

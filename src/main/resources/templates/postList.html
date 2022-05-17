@@ -7,7 +7,7 @@
       <h4 class="right" th:text="${post.getUserId()}"></h4>
       <p  class="right" th:text="${post.getDateAndTime()}"></p>
       <h2><a th:text="${post.getHeader()}" th:href="@{/posts/{id}(id=${post.getId()})}"></a></h2>
-      <div><img src="https://picsum.photos/150"></div>
+      <div><img th:src="@{https://picsum.photos/150?random={id}(id=${post.getId()})}"></div>
       <p class="short-text" th:text="${post.getText()}"></p>
 <!--      <div>-->
 <!--        <a th:text="#{editPostKey}" th:href="@{/posts/{id}/edit(id=${post.getId()})}"></a>-->
@@ -23,3 +23,7 @@
     </div>
   </body>
 </html>
+
+
+
+
