@@ -3,7 +3,7 @@
   <body class="background">
     <div th:replace="fragments/fragments :: menu"></div>
     <h3 th:text="#{editPostKey}"></h3>
-    <form th:action="@{/posts/edit/{id}(id=${post.getId()})}" th:object="${post}" method="post">
+    <form th:action="@{/private/posts/edit/{id}(id=${post.getId()})}" th:object="${post}" method="post">
       <div>
         <div th:text="#{userIdKey}"></div>
         <input type="text" th:field="*{userId}">

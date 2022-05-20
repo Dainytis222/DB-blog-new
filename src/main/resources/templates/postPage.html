@@ -4,15 +4,16 @@
   <body class="background">
     <div th:replace="fragments/fragments :: menu"></div>
     <div class="postBlock" th:object="${post}">
-      <h4 class="right" th:text="*{userId}"></h4>
+      <h4 class="right" th:text="${user.getName()}"></h4>
       <p class="right" th:text="*{dateAndTime}"></p>
       <h2 th:text="*{header}"></h2>
       <div><img src="https://picsum.photos/150"></div>
       <p th:text="*{text}"></p>
     </div>
     <div class="pages">
-      <a th:text="#{editPostKey}" th:href="@{/posts/{id}/edit(id=${post.getId()})}"></a>
-      <a th:text="#{createCommentKey}" th:href="@{/posts/{id}/comments/comment(id=${post.getId()})}">Create comment</a>
+      <a th:text="#{editPostKey}" th:href="@{/private/posts/{id}/edit(id=${post.getId()})}"></a>
+      <a th:text="#{deletePostKey}" th:href="@{/private/posts/delete/{id}(id=${post.getId()})}"></a>
+      <a th:text="#{createCommentKey}" th:href="@{/private/posts/{id}/comments/comment(id=${post.getId()})}">Create comment</a>
     </div>
   </body>
 </html>

@@ -4,9 +4,9 @@
   <body class="background">
     <div th:replace="fragments/fragments :: menu"></div>
     <div class="postBlock" th:each="post: ${posts}">
-      <h4 class="right" th:text="${post.getUserId()}"></h4>
+      <h4 class="right" th:text="${usersMap.get(post.getUserId())}"></h4>
       <p  class="right" th:text="${post.getDateAndTime()}"></p>
-      <h2><a th:text="${post.getHeader()}" th:href="@{/posts/{id}(id=${post.getId()})}"></a></h2>
+      <h2><a th:text="${post.getHeader()}" th:href="@{/public/posts/{id}(id=${post.getId()})}"></a></h2>
       <div><img th:src="@{https://picsum.photos/150?random={id}(id=${post.getId()})}"></div>
       <p class="short-text" th:text="${post.getText()}"></p>
 <!--      <div>-->
@@ -15,11 +15,11 @@
 <!--      </div>-->
     </div>
     <div class="pages">
-      <a th:href="@{/posts(page=${currentPage -1})}"> < </a>
+      <a th:href="@{/public/posts(page=${currentPage -1})}"> < </a>
       <span th:each="page: ${#numbers.sequence(0, totalPages -1)}">
-        <a th:href="@{/posts(page=${page})}" th:text="${page + 1}"></a>
+        <a th:href="@{/public/posts(page=${page})}" th:text="${page + 1}"></a>
       </span>
-      <a th:href="@{/posts(page=${currentPage +1})}"> > </a>
+      <a th:href="@{/public/posts(page=${currentPage +1})}"> > </a>
     </div>
   </body>
 </html>

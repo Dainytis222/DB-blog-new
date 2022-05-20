@@ -1,0 +1,19 @@
+<html xmlns:th="https://www.thymeleaf.org">
+  <head th:replace="fragments/fragments :: head('DBblog | Create post')"></head>
+  <body class="background">
+    <div>
+      <div class="alert" th:if="${param.error}" th:text="#{login.wrongCredantials}"></div>
+      <form th:action="@{/login}" method="post">
+        <div>
+          <div th:text="#{login.username}"></div>
+          <input type="text" name="username">
+        </div>
+        <div>
+          <div th:text="#{login.password}"></div>
+          <input type="password" name="password">
+        </div>
+        <input type="Submit" th:value="#{submitKey}">
+      </form>
+    </div>
+  </body>
+</html>

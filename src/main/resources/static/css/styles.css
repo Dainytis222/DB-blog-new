@@ -2,7 +2,7 @@
   background: lightgrey;
 }
 
-.allert {
+.alert {
   color: red;
 }
 
@@ -45,6 +45,7 @@
 
 .flag {
   max-height: 10px;
+  margin: 5px 0 0;
 }
 
 .postBlock {
@@ -56,6 +57,7 @@
 
 .pages {
   text-align: center;
+  text-decoration: none;
 }
 
 .right {

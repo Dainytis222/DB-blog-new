@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface PostRepository extends JpaRepository<Post, Integer> {
 
-//  List<Post> findPostsByUserId (int user);
   Page<Post> findAllById(int id, Pageable pageable);
+
 }
