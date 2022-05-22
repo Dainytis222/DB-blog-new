@@ -8,7 +8,10 @@ user_id INT
 
 CREATE TABLE IF NOT EXISTS dbblog.user(
 id INT AUTO_INCREMENT PRIMARY KEY,
-name VARCHAR(255) NOT NULL
+name VARCHAR(255) NOT NULL,
+surname VARCHAR(255) NOT NULL,
+username VARCHAR(255) NOT NULL,
+password VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS dbblog.comment(
@@ -18,3 +21,13 @@ date_time DATETIME,
 post_id INT,
 user_id INT
 );
+
+--CREATE TABLE IF NOT EXISTS dbblog.roles(
+--id INT AUTO_INCREMENT PRIMARY KEY,
+--role VARCHAR(255) NOT NULL
+--);
+--
+--CREATE TABLE IF NOT EXISTS dbblog.user_roles(
+--user_id INT NOT NULL,
+--role_id INT NOT NULL
+--);

@@ -3,9 +3,11 @@ package dainius.app.blog.repository.entity;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,8 +34,8 @@ public class Post {
   @Column (name = "date_time")
   private LocalDateTime dateAndTime;
 
-  @Column (name = "user_id")
-  private int userId;
+  @ManyToOne(fetch = FetchType.EAGER)
+  private User user;
 
 }
 

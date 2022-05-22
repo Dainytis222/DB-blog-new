@@ -3,9 +3,12 @@ package dainius.app.blog.repository.entity;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,23 +18,24 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@Table
 public class Comment {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @Column (name = "text")
+  @Column(name = "text")
   @NotEmpty(message = "{post.text.notEmpty}")
   private String text;
 
-  @Column (name = "date_time")
+  @Column(name = "date_time")
   private LocalDateTime dateAndTime;
 
-  @Column (name = "post_id")
-  private int postId;
+  @ManyToOne(fetch = FetchType.EAGER)
+  private Post post;
 
-  @Column (name = "user_id")
-  private int userId;
+  @ManyToOne(fetch = FetchType.EAGER)
+  private User user;
 
 }

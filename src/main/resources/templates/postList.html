@@ -1,10 +1,10 @@
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <head th:replace="fragments/fragments :: head('DBblog | All posts')"></head>
   <style th:replace="fragments/fragments :: font"></style>
   <body class="background">
     <div th:replace="fragments/fragments :: menu"></div>
     <div class="postBlock" th:each="post: ${posts}">
-      <h4 class="right" th:text="${usersMap.get(post.getUserId())}"></h4>
+      <h4 class="right" th:text="${usersMap.get(post.getUser().getId())}"></h4>
       <p  class="right" th:text="${post.getDateAndTime()}"></p>
       <h2><a th:text="${post.getHeader()}" th:href="@{/public/posts/{id}(id=${post.getId()})}"></a></h2>
       <div><img th:src="@{https://picsum.photos/150?random={id}(id=${post.getId()})}"></div>

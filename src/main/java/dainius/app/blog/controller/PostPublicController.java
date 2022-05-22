@@ -54,7 +54,7 @@ public class PostPublicController {
   ) {
 
     Post post = postService.findById(id);
-    User user = userService.findById(post.getUserId());
+    User user = post.getUser();
 
 
     model.addAttribute("post", post);

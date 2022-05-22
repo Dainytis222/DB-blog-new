@@ -1,4 +1,4 @@
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <head th:fragment="head(title)">
     <meta charset="UTF-8">
     <title th:text="*{title}">dbblog | Posts</title>
@@ -15,6 +15,7 @@
 <!--      <a class="active" th:href="@{/posts}" th:text="#{menuAllPostsKey}">All</a>-->
       <a th:href="@{/public/posts}" th:text="#{menuAllPostsKey}"></a>
       <a th:href="@{/private/posts/post}" th:text="#{menuCreatePostKey}"></a>
+      <a th:href="@{/logout}" th:text="#{logoutKey}"></a>
       <a th:href="@{?lang=lt}">
         <img class="flag" th:src="@{/images/LT-flag.png}">
       </a>
