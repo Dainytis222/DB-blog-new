@@ -12,6 +12,7 @@ import javax.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.context.annotation.Bean;
 
 @Entity
 @NoArgsConstructor
@@ -27,7 +28,7 @@ public class Post {
   @NotEmpty(message = "{post.text.notEmpty}")
   private String header;
 
-  @Column (name = "text")
+  @Column (name = "text", length = 2000)
   @NotEmpty
   private String text;
 

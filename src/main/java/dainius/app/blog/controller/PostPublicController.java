@@ -36,7 +36,7 @@ public class PostPublicController {
 
     Map<Integer, String> usersMap = new HashMap<>();
     for (User user : users) {
-      usersMap.put(user.getId(), user.getName());
+      usersMap.put(user.getId(), user.getUsername());
     }
 
     model.addAttribute("posts", posts);
@@ -46,6 +46,7 @@ public class PostPublicController {
 
     return "postList";
   }
+
 
   @GetMapping(path = "/{id}")
   public String getPostPage(
