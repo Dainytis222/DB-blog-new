@@ -5,10 +5,16 @@
     <div th:replace="fragments/fragments :: menu"></div>
     <div class="postBlock" th:object="${post}">
       <h4 class="right" th:text="${user.getUsername()}"></h4>
-      <p class="right" th:text="*{dateAndTime}"></p>
+      <p class="right" th:text="${post.getFormattedDateAndTime()}"></p>
       <h2 th:text="*{header}"></h2>
       <div><img src="https://picsum.photos/150"></div>
       <p th:text="*{text}"></p>
+      <h4 class="comments" th:text="#{commentsHeader}"></h4>
+      <div class="commentBlock" th:each="comment: ${post.getComments()}">
+        <h4 class="right" th:text="${comment.getUser().getUsername()}"></h4>
+        <p class="right" th:text="${comment.getFormattedDateAndTime()}"></p>
+        <p class="comment" th:text="${comment.getText()}"></p>
+      </div>
     </div>
     <div class="pages">
       <a th:text="#{editPostKey}" th:href="@{/private/posts/{id}/edit(id=${post.getId()})}"></a>

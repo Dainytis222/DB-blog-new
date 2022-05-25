@@ -5,7 +5,7 @@
     <div th:replace="fragments/fragments :: menu"></div>
     <div class="postBlock" th:each="post: ${posts}">
       <h4 class="right" th:text="${usersMap.get(post.getUser().getId())}"></h4>
-      <p  class="right" th:text="${post.getDateAndTime()}"></p>
+      <p  class="right" th:text="${post.getFormattedDateAndTime()}"></p>
       <h2><a th:text="${post.getHeader()}" th:href="@{/public/posts/{id}(id=${post.getId()})}"></a></h2>
       <div><img th:src="@{https://picsum.photos/150?random={id}(id=${post.getId()})}"></div>
       <p class="short-text" th:text="${post.getText()}"></p>

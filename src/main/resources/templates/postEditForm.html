@@ -5,6 +5,9 @@
     <h3 th:text="#{editPostKey}"></h3>
     <form th:action="@{/private/posts/edit/{id}(id=${post.getId()})}" th:object="${post}" method="post">
       <div>
+        <input style="visibility: hidden" type="text" th:field="*{user}">
+      </div>
+      <div>
         <div th:text="#{headerKey}"></div>
         <input type="text" th:field="*{header}">
       </div>

@@ -1,10 +1,14 @@
 package dainius.app.blog.controller;
 
 import dainius.app.blog.repository.entity.Post;
+import dainius.app.blog.repository.entity.User;
 import dainius.app.blog.service.PostService;
+import dainius.app.blog.service.UserService;
 import java.time.LocalDateTime;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PostPrivateController {
 
   private final PostService postService;
+  private final UserService userService;
 
   @GetMapping("/post")
   public String getPostForm(Model model) {
@@ -35,6 +40,9 @@ public class PostPrivateController {
     if (errors.hasErrors()) {
       return "postForm";
     }
+
+    User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    post.setUser(user);
 
     post.setDateAndTime(LocalDateTime.now());
     Post createdPost = postService.create(post);

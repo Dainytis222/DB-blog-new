@@ -3,11 +3,7 @@
   <body class="background">
     <div th:replace="fragments/fragments :: menu"></div>
     <h3 th:text="#{createCommentKey}"></h3>
-    <form th:action="@{/posts/{id}(id=${post.getId()})/comments/create}" th:object="${comment}" method="comment">
-      <div>
-        <div th:text="#{userIdKey}"></div>
-        <input type="text" th:field="*{userId}">
-      </div>
+    <form th:action="@{/private/posts/{id}/comments/create(id=${postId})}" th:object="${comment}" method="post">
       <div>
         <div th:text="#{textKey}"></div>
         <textarea type="text" rows="10" cols="50" th:field="*{text}"></textarea>

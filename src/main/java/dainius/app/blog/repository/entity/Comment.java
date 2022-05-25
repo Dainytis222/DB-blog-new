@@ -1,6 +1,7 @@
 package dainius.app.blog.repository.entity;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,5 +38,9 @@ public class Comment {
 
   @ManyToOne(fetch = FetchType.EAGER)
   private User user;
+
+  public String getFormattedDateAndTime () {
+    return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(this.dateAndTime);
+  }
 
 }
