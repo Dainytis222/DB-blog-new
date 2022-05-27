@@ -7,6 +7,7 @@ import dainius.app.blog.service.UserService;
 import java.time.LocalDateTime;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -28,11 +29,13 @@ public class PostPrivateController {
   private final UserService userService;
 
   @GetMapping("/post")
+  @PreAuthorize("hasRole('ADMIN')")
   public String getPostForm(Model model) {
     return "postForm";
   }
 
   @PostMapping("/create")
+  @PreAuthorize("hasRole('ADMIN')")
   public String createPost(
       @Valid Post post,
       BindingResult errors,
@@ -57,6 +60,7 @@ public class PostPrivateController {
   }
 
   @GetMapping("/{id}/edit")
+  @PreAuthorize("hasRole('ADMIN')")
   public String getPostEditForm(
       @PathVariable(name = "id") int id,
       Model model
@@ -68,6 +72,7 @@ public class PostPrivateController {
   }
 
   @PostMapping("/edit/{id}")
+  @PreAuthorize("hasRole('ADMIN')")
   public String editPost(
       @PathVariable(name = "id") int id,
       @Valid Post post,
@@ -84,6 +89,7 @@ public class PostPrivateController {
   }
 
   @GetMapping("/delete/{id}")
+  @PreAuthorize("hasRole('ADMIN')")
   public String deletePost(
       @PathVariable(name = "id") int id) {
 

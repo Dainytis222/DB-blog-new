@@ -1,4 +1,4 @@
-INSERT INTO user (name, surname, username, password) VALUES ("Jonas", "Jonaitis", "Jonis", "$2a$12$3FU3rclh4.xrCk08N873CedTD5SnxlpCZoR3LvzkH1JsZLfSCpGjq");
+INSERT INTO user (name, surname, username, password) VALUES ("Jonas", "Jonaitis", "Jonis", "$2a$12$hjXN7cqULMyBtxJ7LNpS4.1nWZcdb7PfdrMSkWtnYVfnrTL8NYbmy");
 INSERT INTO user (name, surname, username, password) VALUES ("Petras", "Petraitis", "Petris", "$2a$12$3FU3rclh4.xrCk08N873CedTD5SnxlpCZoR3LvzkH1JsZLfSCpGjq");
 INSERT INTO user (name, surname, username, password) VALUES ("Monika", "Monkytė", "Monke", "$2a$12$3FU3rclh4.xrCk08N873CedTD5SnxlpCZoR3LvzkH1JsZLfSCpGjq");
 INSERT INTO user (name, surname, username, password) VALUES ("Edita", "Editaitė", "Edė", "$2a$12$3FU3rclh4.xrCk08N873CedTD5SnxlpCZoR3LvzkH1JsZLfSCpGjq");
@@ -30,22 +30,14 @@ INSERT INTO comment (text, date_time, post_id, user_id) VALUES ("reikia rašyti 
 INSERT INTO roles(role) VALUES ("USER");
 INSERT INTO roles(role) VALUES ("ADMIN");
 
-INSERT INTO user_roles(user_id, roles_id) VALUES (1,1);
 INSERT INTO user_roles(user_id, roles_id) VALUES (1,2);
 INSERT INTO user_roles(user_id, roles_id) VALUES (2,1);
-INSERT INTO user_roles(user_id, roles_id) VALUES (2,2);
 INSERT INTO user_roles(user_id, roles_id) VALUES (3,1);
-INSERT INTO user_roles(user_id, roles_id) VALUES (3,2);
 INSERT INTO user_roles(user_id, roles_id) VALUES (4,1);
-INSERT INTO user_roles(user_id, roles_id) VALUES (4,2);
 INSERT INTO user_roles(user_id, roles_id) VALUES (5,1);
-INSERT INTO user_roles(user_id, roles_id) VALUES (5,2);
 INSERT INTO user_roles(user_id, roles_id) VALUES (6,1);
-INSERT INTO user_roles(user_id, roles_id) VALUES (6,2);
 INSERT INTO user_roles(user_id, roles_id) VALUES (7,1);
-INSERT INTO user_roles(user_id, roles_id) VALUES (7,2);
 INSERT INTO user_roles(user_id, roles_id) VALUES (8,1);
-INSERT INTO user_roles(user_id, roles_id) VALUES (8,2);
 
 
 --SELECT * FROM comment;

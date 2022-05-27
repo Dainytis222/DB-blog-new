@@ -47,7 +47,6 @@ public class PostPublicController {
     return "postList";
   }
 
-
   @GetMapping(path = "/{id}")
   public String getPostPage(
       @PathVariable(name = "id") int id,
@@ -57,10 +56,11 @@ public class PostPublicController {
     Post post = postService.findById(id);
     User user = post.getUser();
 
-
     model.addAttribute("post", post);
     model.addAttribute("user", user);
 
     return "postPage";
   }
+
+
 }

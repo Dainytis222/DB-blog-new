@@ -1,10 +1,12 @@
 package dainius.app.blog.controller;
 
 import dainius.app.blog.repository.entity.Comment;
+import dainius.app.blog.repository.entity.Post;
 import dainius.app.blog.repository.entity.User;
 import dainius.app.blog.service.CommentService;
 import java.time.LocalDateTime;
 import javax.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,7 @@ public class CommentPrivateController {
   }
 
   @GetMapping("/comment")
+  @PreAuthorize("hasRole('USER')")
   public  String getCommentForm(@PathVariable("id") int id, Model model){
 
     model.addAttribute("comment", new Comment());
@@ -34,6 +37,7 @@ public class CommentPrivateController {
   }
 
   @PostMapping("/create")
+  @PreAuthorize("hasRole('USER')")
   public String createComment(
       @PathVariable("id") int id,
       @Valid Comment comment,
@@ -50,7 +54,8 @@ public class CommentPrivateController {
     Comment createdComment = commentService.create(comment, id);
 
     model.addAttribute("comment", createdComment);
-    return "redirect:/public/posts/";
+    return "redirect:/public/posts/{id}";
   }
+
 }
 

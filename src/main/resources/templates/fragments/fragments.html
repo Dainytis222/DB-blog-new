@@ -12,16 +12,19 @@
       <a th:href="@{/public/posts}">
         <img class="logo" th:src="@{/images/DB-blog-logo.png}">
       </a>
-<!--      <a class="active" th:href="@{/posts}" th:text="#{menuAllPostsKey}">All</a>-->
       <a th:href="@{/public/posts}" th:text="#{menuAllPostsKey}"></a>
-      <a th:href="@{/private/posts/post}" th:text="#{menuCreatePostKey}"></a>
-      <a th:href="@{/logout}" th:text="#{logoutKey}"></a>
-      <a th:href="@{?lang=lt}">
+      <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/private/posts/post}" th:text="#{menuCreatePostKey}"></a>
+      <a th:if="${#authorization.expression('hasAnyRole(''ROLE_USER'')')}" th:href="@{/login}" th:text="#{logoutKey}"></a>
+      <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:href="@{/login}" th:text="#{logoutKey}"></a>
+      <a sec:authorize="!hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" th:href="@{/login}" th:text="#{loginKey}"></a>
+      <a th:text="#{hello} + ${#authentication.name}"></a>
+      <a style="float:right" th:href="@{?lang=lt}">
         <img class="flag" th:src="@{/images/LT-flag.png}">
       </a>
-      <a th:href="@{?lang=en}">
+      <a style="float:right" th:href="@{?lang=en}">
         <img class="flag" th:src="@{/images/UK-flag.png}">
       </a>
+
     </div>
   </body>
 </html>

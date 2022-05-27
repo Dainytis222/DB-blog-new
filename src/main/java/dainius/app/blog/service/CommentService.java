@@ -33,7 +33,12 @@ public class CommentService {
     Pageable pageable = Pageable
         .ofSize(pageSize)
         .withPage(pageNumber);
-
     return commentRepository.findAll(pageable);
   }
+
+//  public void delete(int postId) {
+//    Post post = postService.findById(postId);
+//    comment.setPost(post);
+//    commentRepository.deleteById(id);
+//  }
 }

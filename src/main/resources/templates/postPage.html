@@ -17,9 +17,11 @@
       </div>
     </div>
     <div class="pages">
-      <a th:text="#{editPostKey}" th:href="@{/private/posts/{id}/edit(id=${post.getId()})}"></a>
-      <a th:text="#{deletePostKey}" th:href="@{/private/posts/delete/{id}(id=${post.getId()})}"></a>
-      <a th:text="#{createCommentKey}" th:href="@{/private/posts/{id}/comments/comment(id=${post.getId()})}">Create comment</a>
+      <a sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{editPostKey}" th:href="@{/private/posts/{id}/edit(id=${post.getId()})}"></a>
+      <a sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{deletePostKey}" th:href="@{/private/posts/delete/{id}(id=${post.getId()})}"></a>
+      <a th:text="#{createCommentKey}" th:href="@{/private/posts/{id}/comments/comment(id=${post.getId()})}"></a>
+      <a th:text="#{editCommentKey}" th:href="@{/private/posts/{id}/comments/comment(id=${post.getId()})}"></a>
+      <a th:text="#{deleteCommentKey}" th:href="@{/private/posts/{id}/comments/comment(id=${post.getId()})}"></a>
     </div>
   </body>
 </html>

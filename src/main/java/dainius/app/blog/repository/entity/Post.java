@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -46,7 +47,7 @@ public class Post {
   private User user;
 
   @Fetch(FetchMode.SUBSELECT)
-  @OneToMany(fetch = FetchType.EAGER, mappedBy = "post")
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "post", cascade = CascadeType.ALL)
   private List<Comment> comments = new ArrayList<>();
 
   public String getFormattedDateAndTime () {
