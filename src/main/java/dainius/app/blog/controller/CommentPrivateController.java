@@ -28,7 +28,7 @@ public class CommentPrivateController {
   }
 
   @GetMapping("/comment")
-  @PreAuthorize("hasRole('USER')")
+  @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
   public  String getCommentForm(@PathVariable("id") int id, Model model){
 
     model.addAttribute("comment", new Comment());
@@ -37,7 +37,7 @@ public class CommentPrivateController {
   }
 
   @PostMapping("/create")
-  @PreAuthorize("hasRole('USER')")
+  @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
   public String createComment(
       @PathVariable("id") int id,
       @Valid Comment comment,
@@ -55,6 +55,16 @@ public class CommentPrivateController {
 
     model.addAttribute("comment", createdComment);
     return "redirect:/public/posts/{id}";
+  }
+
+  @GetMapping("/delete/{commentId}")
+  @PreAuthorize("hasRole('ADMIN')")
+  public String deleteComment(
+      @PathVariable("id") int id,
+      @PathVariable("commentId") int commentId) {
+
+    commentService.delete(commentId);
+    return "redirect:/public/posts/" + id;
   }
 
 }

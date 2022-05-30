@@ -11,17 +11,25 @@
       <p th:text="*{text}"></p>
       <h4 class="comments" th:text="#{commentsHeader}"></h4>
       <div class="commentBlock" th:each="comment: ${post.getComments()}">
-        <h4 class="right" th:text="${comment.getUser().getUsername()}"></h4>
+        <h4 class="right" th:text="${comment.getUser().getUsername() + ' / ' + comment.getId()}"></h4>
         <p class="right" th:text="${comment.getFormattedDateAndTime()}"></p>
+        <a class="button" style="float:right"
+           sec:authorize="hasRole('ROLE_ADMIN')"
+           th:href="@{/private/posts/{id}/comments/delete/{commentId}(id=${post.getId()}, commentId=${comment.getId()})}">
+          <img class="icon" th:src="@{/images/delete.png}">
+        </a>
+        <a class="button" style="float:right"
+           sec:authorize="hasRole('ROLE_ADMIN')"
+           th:href="@{/private/posts/{id}/comments/comment(id=${post.getId()})}">
+          <img class="icon" th:src="@{/images/edit.png}">
+        </a>
         <p class="comment" th:text="${comment.getText()}"></p>
       </div>
     </div>
     <div class="pages">
-      <a sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{editPostKey}" th:href="@{/private/posts/{id}/edit(id=${post.getId()})}"></a>
-      <a sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{deletePostKey}" th:href="@{/private/posts/delete/{id}(id=${post.getId()})}"></a>
-      <a th:text="#{createCommentKey}" th:href="@{/private/posts/{id}/comments/comment(id=${post.getId()})}"></a>
-      <a th:text="#{editCommentKey}" th:href="@{/private/posts/{id}/comments/comment(id=${post.getId()})}"></a>
-      <a th:text="#{deleteCommentKey}" th:href="@{/private/posts/{id}/comments/comment(id=${post.getId()})}"></a>
+      <a class="button" sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{editPostKey}" th:href="@{/private/posts/{id}/edit(id=${post.getId()})}"></a>
+      <a class="button" sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{deletePostKey}" th:href="@{/private/posts/delete/{id}(id=${post.getId()})}"></a>
+      <a class="button" th:text="#{createCommentKey}" th:href="@{/private/posts/{id}/comments/comment(id=${post.getId()})}"></a>
     </div>
   </body>
 </html>

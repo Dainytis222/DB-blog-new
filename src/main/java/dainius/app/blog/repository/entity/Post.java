@@ -47,7 +47,7 @@ public class Post {
   private User user;
 
   @Fetch(FetchMode.SUBSELECT)
-  @OneToMany(fetch = FetchType.EAGER, mappedBy = "post", cascade = CascadeType.ALL)
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "post", orphanRemoval = true)
   private List<Comment> comments = new ArrayList<>();
 
   public String getFormattedDateAndTime () {

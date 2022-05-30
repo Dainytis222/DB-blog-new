@@ -83,3 +83,20 @@ border-top: 1px solid #0234c9;
 .commentBlock{
 font-size: 0.8em;
 }
+
+.button {
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border: 1px solid #CCCCCC;
+  box-shadow: 1px 1px #888888;
+}
+
+
+.icon{
+  max-height: 12px;
+  margin: 2px 0 0;
+  padding: 2px;
+  text-align: right;
+}

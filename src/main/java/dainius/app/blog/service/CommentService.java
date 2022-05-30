@@ -36,9 +36,9 @@ public class CommentService {
     return commentRepository.findAll(pageable);
   }
 
-//  public void delete(int postId) {
+  public void delete(int id) {
 //    Post post = postService.findById(postId);
 //    comment.setPost(post);
-//    commentRepository.deleteById(id);
-//  }
+    commentRepository.deleteById(id);
+  }
 }
